@@ -1,0 +1,97 @@
+﻿@model  IEnumerable<AhmetProj.Models.Orders>
+
+
+@{
+    ViewBag.Title = "myaccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="axil-breadcrumb-area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="inner">
+                    <ul class="axil-breadcrumb">
+                        <li class="axil-breadcrumb-item"><a href="index-1.html">Anasayfa</a></li>
+                        <li class="separator"></li>
+                        <li class="axil-breadcrumb-item active" aria-current="page">Hesabım</li>
+                    </ul>
+                    <h1 class="title">Hesap Bilgileri</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-4">
+                <div class="inner">
+                    <div class="bradcrumb-thumb">
+                        <img src="~/assets/images/product/product-45.png" alt="Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb Area  -->
+<!-- Start My Account Area  -->
+<div class="axil-dashboard-area axil-section-gap">
+    <div class="container">
+        <div class="axil-dashboard-warp">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="dashboard-menu">
+                        <ul class="nav flex-column" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="@Url.Action("myaccount","Users")" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Hesabım</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="@Url.Action("user_adress","Users")" aria-selected="false"><i class="fi-rs-credit-card mr-10"></i>Adres Bilgileri</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-pane fade active show">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Resim</th>
+                                                <th scope="col">Gün</th>
+                                                <th scope="col">Urun Adı</th>
+                                                <th scope="col">Adet</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var order in Model)
+                                            {
+                                                <tr>
+                                                    <td>@order.order_no</td>
+                                                    <td>@order.order_date</td>
+                                                    <td>@order.Products.product_name</td>
+                                                    <td>@order.piece</td>
+                                                </tr>
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,85 @@
+﻿
+@model AhmetProj.Models.Liste
+
+@{
+    ViewBag.Title = "Sepetim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="axil-product-cart-area axil-section-gap">
+    <div class="container">
+        <div class="axil-product-cart-wrap">
+            <div class="product-table-heading">
+                <h4 class="title">Sepetim</h4>
+                <a href="#" class="cart-clear">Sepeti Temizle</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table axil-product-table axil-cart-table mb--40">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="product-remove"></th>
+                            <th scope="col" class="product-thumbnail">Ürün</th>
+                            <th scope="col" class="product-title">Ürün Adı</th>
+                            <th scope="col" class="product-price">Fiyat</th>
+                            <th scope="col" class="product-quantity">Adet</th>
+                            <th scope="col" class="product-subtotal">Toplam Fiyat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.carts)
+                        {
+                            <tr>
+                                <td class="product-remove">
+                                    <form method="post" action="@Url.Action("sepetten_sil", "Cart", new { id = item.urun.product_id })">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="remove-wishlist"><i class="fal fa-times"></i></button>
+                                    </form>
+                                </td>
+                                <td class="product-thumbnail"><a href="single-product.html"><img src="@item.urun.product_img1" alt="Ürün Resmi"></a></td>
+                                <td class="product-title"><a href="single-product.html">@item.urun.product_name</a></td>
+                                <td class="product-price" data-title="Fiyat"><span class="currency-symbol">@item.urun.product_price</span></td>
+                                @using (Html.BeginForm("sepete_ekle", "Cart"))
+                                {
+                                    <td class="product-quantity" data-title="Qty">
+                                      <div class="input-group number-spinner" style="width: 65%;">
+                                          <span class="input-group-btn">
+                                              <button name="id" class="btn btn-default" value="@item.urun.product_id" data-dir="dwn" onclick="'this.form.submit()'">-</button>
+                                          </span>
+
+                                          <input name="adet" type="text" class="form-control text-center" value="@item.adet">
+
+                                          <span class="input-group-btn">
+                                              <button name="id" class="btn btn-default" value="@item.urun.product_id" data-dir="up" onclick="'this.form.submit()'">+</button>
+                                          </span>
+                                      </div>
+                                    </td>
+                                }
+
+                                <td class="product-subtotal" data-title="Toplam Fiyat"><span class="currency-symbol">@(item.urun.product_price * item.adet)</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-5 col-lg-7 offset-xl-7 offset-lg-5">
+                    <div class="axil-order-summery mt--80">
+                        <h5 class="title mb--20">Sipariş Özeti</h5>
+                        <div class="summery-table-wrap">
+                            <table class="table summery-table mb--30">
+                                <tbody>
+                                    <tr class="order-subtotal">
+                                        <td>Ara Toplam</td>
+                                        @*<td>@Model.Cart.Sepet_toplami()</td>*@
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="@Url.Action("satin_al", "Cart")" class="axil-btn btn-bg-primary checkout-btn">Satın Al</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

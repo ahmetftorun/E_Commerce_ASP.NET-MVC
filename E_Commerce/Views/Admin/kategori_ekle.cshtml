@@ -1,0 +1,63 @@
+﻿@model AhmetProj.Models.Categorys
+@{
+    ViewBag.Title = "kategori_ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Add Category</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index","Admin")"></a></li>
+                    <li class="breadcrumb-item">Anasayfa</li>
+                    <li class="breadcrumb-item active">Kategori Ekle</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid add-product">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="product-info">
+                        <h5>Açıklama</h5>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <form>
+                                <div class="product-group">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Kategori Adı</label>
+                                                @Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-sm-12 text-end">
+                                            @*<a class="btn btn-primary me-3">Guncelle</a>*@
+                                            <button type="submit" class="btn btn-success">Kategori Ekle</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

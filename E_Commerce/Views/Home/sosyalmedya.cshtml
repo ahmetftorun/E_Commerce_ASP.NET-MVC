@@ -1,0 +1,12 @@
+﻿@model IEnumerable<AhmetProj.Models.SocialMedia>
+
+<div class="social-share">
+    @foreach (var item in Model)
+    {
+        <a href="@item.facebook_url"><i class="fab fa-facebook-f"></i></a>
+        <a href="@item.instagram_url"><i class="fab fa-instagram"></i></a>
+        <a href="@item.twitter_url"><i class="fab fa-twitter"></i></a>
+        <a href="@item.linkedin_url"><i class="fab fa-linkedin-in"></i></a>
+        <a href="@item.discord_url"><i class="fab fa-discord"></i></a>
+    }
+</div>

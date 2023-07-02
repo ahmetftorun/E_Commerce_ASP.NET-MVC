@@ -1,0 +1,254 @@
+﻿@model  AhmetProj.Models.Liste
+@using AhmetProj.Models
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*SLİDER*@
+<div class="axil-main-slider-area main-slider-style-1">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-sm-6">
+                <div class="main-slider-content">
+                    <div class="slider-content-activation-one">
+                        <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="400" data-sal-duration="800">
+
+                            <span class="subtitle"><i class="fas fa-fire"></i> Haftanın Çok Satanları</span>
+                            <h1 class="title">Roco Kablosuz Kulaklık</h1>
+                            <div class="slide-action">
+                                <div class="shop-btn">
+                                    <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>AlışVerişe Başla</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-sm-6">
+                <div class="main-slider-large-thumb">
+                    <div class="slider-thumb-activation-one axil-slick-dots">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="shape-group">
+        <li class="shape-1"><img src="assets/images/others/shape-1.png" alt="Shape"></li>
+        <li class="shape-2"><img src="assets/images/others/shape-2.png" alt="Shape"></li>
+    </ul>
+</div>
+
+@*KATEGORİ LİSTELE*@
+<div class="axil-categorie-area bg-color-white axil-section-gapcommon">
+    <div class="container">
+        <div class="section-title-wrapper">
+            <span class="title-highlighter highlighter-secondary"> <i class="far fa-tags"></i> Kategoriler</span>
+            <h2 class="title">Kategorileri Keşfet</h2>
+        </div>
+
+        <div class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
+            @foreach (var item in Model.categorys)
+            {
+
+
+                <div class="slick-single-layout">
+                    <div class="categrie-product" data-sal="zoom-out" data-sal-delay="200" data-sal-duration="500">
+                        <a href="@Url.Action("pcategory_list","Products", new {id=item.category_id})">
+                            @*<img class="img-fluid" src="assets/images/product/categories/elec-4.png" alt="product categorie">*@
+                            <h6 class="cat-title">@item.category_name </h6>
+                        </a>
+                    </div>
+
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+@*SAYAÇ*@
+<div class="axil-poster-countdown">
+    <div class="container">
+        <div class="poster-countdown-wrap bg-lighter">
+            <div class="row">
+                <div class="col-xl-5 col-lg-6">
+                    <div class="poster-countdown-content">
+                        <div class="section-title-wrapper">
+                            <span class="title-highlighter highlighter-secondary"> <i class="fal fa-headphones-alt"></i> Bu Müzik Deneyimini</span>
+                            <h2 class="title">Kaçırmak İstemezsiniz!!</h2>
+                        </div>
+                        <div class="poster-countdown countdown mb--40"></div>
+                        <a href="#" class="axil-btn btn-bg-primary">Muziği Yaşa!</a>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-6">
+                    <div class="poster-countdown-thumbnail">
+                        <img src="~/assets/images/product/poster/poster-03.png" alt="Poster Product">
+                        <div class="music-singnal">
+                            <div class="item-circle circle-1">1</div>
+                            <div class="item-circle circle-2">2</div>
+                            <div class="item-circle circle-3">3</div>
+                            <div class="item-circle circle-4">4</div>
+                            <div class="item-circle circle-5">5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*URUN LİSTELEME*@
+<div class="axil-product-area bg-color-white axil-section-gap">
+    <div class="container">
+        <div class="section-title-wrapper">
+            <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i>Ürünler</span>
+            <h2 class="title">Ürünlere Bir Göz At</h2>
+        </div>
+        <div class="explore-product-activation slick-layout-wrapper slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
+
+            <div class="slick-single-layout">
+                <div class="row row--15">
+                    @foreach (var item in Model.products)
+                    {
+                        <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
+                            <div class="axil-product product-style-one">
+                                <div class="thumbnail">
+                                    <a href="@Url.Action("product_detail","Products",new {id=item.product_id})">
+                                        <img data-sal="zoom-out" data-sal-delay="200" data-sal-duration="800" loading="lazy" class="main-img" height="200px" width="150px"  src="@item.product_img1">
+                                        <img class="hover-img"   src="@item.product_img2">
+                                    </a>
+                                    @*<div class="label-block label-right">
+                                            <div class="product-badget">20% Off</div>
+                                        </div>*@
+                                    <div class="product-hover-action">
+                                        <ul class="cart-action">
+                                            <li class="quickview"><a href="@Url.Action("product_model","Product",new {id=@item.product_id})" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                            <li class="select-option">
+                                                <a href="@Url.Action("sepete_ekle","Cart",new {id=item.product_id})">
+                                                    Sepete Ekle
+                                                </a>
+                                            </li>
+                                            <li class="wishlist"><a href="@Url.Action("addtowishlist","Wishlist")"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="inner">
+                                        @*<div class="product-rating">
+                                                <span class="icon">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </span>
+                                                <span class="rating-number">(64)</span>
+                                            </div>*@
+                                        <h5 class="title"><a href="@Url.Action("product_detail","Products",new {id=item.product_id})">@item.product_name</a></h5>
+                                        <div class="product-price-variant">
+                                            <span class="price current-price">₺@item.product_price</span>
+                                         
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center mt--20 mt_sm--0">
+                <a href="shop.html" class="axil-btn btn-bg-lighter btn-load-more">Bütün Urunleri Gör</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="axil-testimoial-area axil-section-gap bg-vista-white">
+
+</div>
+
+<div class="axil-why-choose-area pb--50 pb_sm--30">
+    <div class="container">
+        <div class="section-title-wrapper section-title-center">
+            <span class="title-highlighter highlighter-secondary"><i class="fal fa-thumbs-up"></i>Neden Biz</span>
+            <h2 class="title">İnsanlar Neden Bizi Seçiyor?</h2>
+        </div>
+        <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 row--20">
+            <div class="col">
+                <div class="service-box">
+                    <div class="icon">
+                        <img src="~/assets/images/icons/service6.png" alt="Service">
+                    </div>
+                    <h6 class="title">Hızlı &amp; Guvenli Teslimat</h6>
+                </div>
+            </div>
+            <div class="col">
+                <div class="service-box">
+                    <div class="icon">
+                        <img src="~/assets/images/icons/service7.png" alt="Service">
+                    </div>
+                    <h6 class="title">100% Urun Garantisi</h6>
+                </div>
+            </div>
+            <div class="col">
+                <div class="service-box">
+                    <div class="icon">
+                        <img src="~/assets/images/icons/service8.png" alt="Service">
+                    </div>
+                    <h6 class="title">24 Saat İade Politikası</h6>
+                </div>
+            </div>
+            <div class="col">
+                <div class="service-box">
+                    <div class="icon">
+                        <img src="~/assets/images/icons/service9.png" alt="Service">
+                    </div>
+                    <h6 class="title">24 Saat Teslimat</h6>
+                </div>
+            </div>
+            <div class="col">
+                <div class="service-box">
+                    <div class="icon">
+                        <img src="~/assets/images/icons/service10.png" alt="Service">
+                    </div>
+                    <h6 class="title">7/24 Cagrı Merkezi</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="axil-poster">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb--30">
+                <div class="single-poster">
+                    <a href="shop.html">
+                        <img src="~/assets/images/product/poster/poster-01.png" alt="eTrade promotion poster">
+                        <div class="poster-content">
+                            <div class="inner">
+                                <h3 class="title">Pahalı ses, <br> cok ucuza.</h3>
+                                <span class="sub-title">Collections <i class="fal fa-long-arrow-right"></i></span>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

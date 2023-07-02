@@ -1,0 +1,125 @@
+﻿@model AhmetProj.Models.Liste
+   
+@{
+    ViewBag.Title = "product_list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="axil-breadcrumb-area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="inner">
+                    <ul class="axil-breadcrumb">
+                        <li class="axil-breadcrumb-item"><a href="index-1.html">Anasayfa</a></li>
+                        <li class="separator"></li>
+                        <li class="axil-breadcrumb-item active" aria-current="page">Urunler</li>
+                    </ul>
+                    <h1 class="title">Bütün Urunler</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-4">
+                <div class="inner">
+                    <div class="bradcrumb-thumb">
+                        <img src="assets/images/product/product-45.png" alt="Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb Area  -->
+<!-- Start Shop Area  -->
+<div class="axil-shop-area axil-section-gap bg-color-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="axil-shop-top">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="category-select">
+                                @using (Html.BeginForm("product_list","Products"))
+                                { 
+                              
+                                    @Html.DropDownList("brand_id",  null,"Hepsi", new { @class = "single-select", onchange="this.form.submit()"})
+                                }
+                                    <!-- Start Single Select  -->
+                                <select class="single-select">
+                                    <option>Ürünler</option>
+                                    <option>Telefon</option>
+
+                                </select>
+                                <!-- End Single Select  -->
+                                <!-- Start Single Select  -->
+                                <select class="single-select">
+                                    <option>Fiyat Aralıgı</option>
+                                    <option>0 - 100</option>
+
+                                </select>
+
+                                <!-- End Single Select  -->
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="category-select mt_md--10 mt_sm--10 justify-content-lg-end">
+                                <!-- Start Single Select  -->
+                                <select class="single-select">
+                                    <option>En yeniye göre sırala</option>
+                                    <option>İsme Gore Sırala</option>
+                                    <option>Fiyata Gore</option>
+
+                                </select>
+                                <!-- End Single Select  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row--15">
+           
+            @foreach (var item in Model.products)
+            {
+
+
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="axil-product product-style-one has-color-pick mt--40">
+                    <div class="thumbnail">
+                        <a href="single-product-3.html">
+                            <img src="@item.product_img1" alt="Product Images">
+                        </a>
+
+                        <div class="product-hover-action">
+                            <ul class="cart-action">
+                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+
+                                <li class="select-option"><a href="@Url.Action("sepete_ekle","Cart",new {id=item.product_id})">Sepete Ekle</a></li>
+                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="product-content">
+                        <div class="inner">
+                            <h5 class="title"><a href="@Url.Action("product_detail","Products",new {id=item.product_id})">@item.product_name</a></h5>
+                            <div class="product-price-variant">
+                                <span class="price current-price">@item.product_price</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            }
+         
+
+        </div>
+        <div class="text-center pt--30">
+            <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Daha Fazlası</a>
+        </div>
+    </div>
+    <!-- End .container -->
+</div>
+

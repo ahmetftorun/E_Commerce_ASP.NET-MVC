@@ -1,0 +1,102 @@
+﻿@model  AhmetProj.Models.UsersAdress
+@using AhmetProj.Models
+@{
+    ViewBag.Title = "user_adress";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="axil-breadcrumb-area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="inner">
+                    <ul class="axil-breadcrumb">
+                        <li class="axil-breadcrumb-item"><a href="index-1.html">Anasayfa</a></li>
+                        <li class="separator"></li>
+                        <li class="axil-breadcrumb-item active" aria-current="page">Hesabım</li>
+                    </ul>
+                    <h1 class="title">Hesap Bilgileria</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-4">
+                <div class="inner">
+                    <div class="bradcrumb-thumb">
+                        <img src="~/assets/images/product/product-45.png" alt="Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb Area  -->
+<!-- Start My Account Area  -->
+<div class="axil-dashboard-area axil-section-gap">
+    <div class="container">
+        <div class="axil-dashboard-warp">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="dashboard-menu">
+                        <ul class="nav flex-column" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="@Url.Action("myaccount","Users",new { id=((Users)Session["user_id"] ).user_id})" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Hesabım</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="@Url.Action("user_adress","Users")" aria-selected="false"><i class="fi-rs-credit-card mr-10"></i>Adres Bilgileri</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-9">
+                    <div class="tab-pane fade active show">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Adres Kaydet</h5>
+                                <div class="duzenle" >
+                                    <a href="@Url.Action("list_adress", "Users",new { id= ((Users)Session["user_id"]).user_id })"> <p>Adres Bilgilerim</p></a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                @using (Html.BeginForm("user_adress", "Users"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group ">
+                                                    @Html.EditorFor(model => model.useradress_town, new { htmlAttributes = new { @class = "form-control", placeholder = "İl Adı" } })
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                @Html.EditorFor(model => model.useradress_province, new { htmlAttributes = new { @class = "form-control", placeholder = "İlçe Adı" } })
+                                            </div>
+                                            <div class="form-group col-lg-12">
+                                                @Html.EditorFor(model => model.useradress_explicitadress, new { htmlAttributes = new { @class = "form-control", placeholder = "Açık Adres" } })
+                                            </div>
+
+                                            <div class="form-group col-lg-12" style="display:none;">
+                                                @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                            </div>
+                                            <div class="form-group mb--0">
+                                                <input type="submit" value="Kaydet"class="axil-btn" >
+                                            </div>
+
+
+                                        </div>
+                                    </form>
+                                }
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AhmetProj.Models.Orders>
+@{
+    ViewBag.Title = "siparis_gecmisi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Siparis Geçmişi</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index","Admin")"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Anasayfa</li>
+                    <li class="breadcrumb-item active"> Siparis Geçmişi</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h4>Siparis Geçmişi</h4>
+                </div>
+                <div class="card-body">
+                    <div class="order-history table-responsive theme-scrollbar">
+                        <table class="table table-bordernone display" id="basic-1">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Uye Adı</th>
+                                    <th scope="col">Urun Adı</th>
+                                    <th scope="col">Adet</th>
+                                    <th scope="col">Sipariş Tarihi</th>
+                                    <th scope="col">Sipariş Numarası</th>
+                                    <th scope="col">Fiyat</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@item.Users.user_username</td>
+                                    <td>
+                                        <div class="product-name">
+                                            <a>@item.Products.product_name</a> 
+                                        </div>
+                                    </td>
+                                    <td>@item.piece</td>
+                                    <td>@item.order_date</td>
+                                    <td>@item.order_no</td>
+                                    <td>@*@item.order_price*@</td>
+                                    @using (Html.BeginForm("sip_sil","Admin"))
+                                      {
+                                        <td> <a href="@Url.Action("sip_sil", "Admin", new {id=item.order_regnum})" class="btn btn-danger btn-xs" role="button" data-original-title="Sil" title="Sil">Sil</a></td>
+                                       }
+                                </tr>
+                               }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

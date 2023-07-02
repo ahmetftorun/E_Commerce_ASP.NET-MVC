@@ -1,0 +1,108 @@
+﻿@model AhmetProj.Models.SocialMedia
+
+@{
+    ViewBag.Title = "sosyalmedya_guncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Add Product</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index","Admin")"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Anasayfa</li>
+                    <li class="breadcrumb-item active">S-Medya Guncelle</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid add-product">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="product-info">
+                        <h5>Açıklama</h5>
+                        @using (Html.BeginForm("sosyalmedya_guncelle", "Admin"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model=>model.id)
+                            <form>
+                                <div class="product-group">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Facebook</label>
+                                                @Html.EditorFor(model => model.facebook_url, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">İnstagram</label>
+                                                @Html.EditorFor(model => model.instagram_url, new { htmlAttributes = new { @class = "form-control" } })
+                                                @*<input class="form-control" placeholder="Urune Ait bir Açıklama Girin" type="text"><span class="text-danger"></span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-group">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Twitter</label>
+                                                @Html.EditorFor(model => model.twitter_url, new { htmlAttributes = new { @class = "form-control" } })
+                                                @*<input class="form-control" placeholder="Urune Ait bir Açıklama Girin" type="text"><span class="text-danger"></span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-group">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Linkedin</label>
+                                                @Html.EditorFor(model => model.linkedin_url, new { htmlAttributes = new { @class = "form-control" } })
+                                                @*<input class="form-control" placeholder="Urune Ait bir Açıklama Girin" type="text"><span class="text-danger"></span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-group">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Discord</label>
+                                                @Html.EditorFor(model => model.discord_url, new { htmlAttributes = new { @class = "form-control" } })
+                                                @*<input class="form-control" placeholder="Urune Ait bir Açıklama Girin" type="text"><span class="text-danger"></span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-sm-12 text-end">
+                                            @*<a class="btn btn-primary me-3">Guncelle</a>*@
+                                            <button type="submit" class="btn btn-success">Sosyal Medya Guncelle</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

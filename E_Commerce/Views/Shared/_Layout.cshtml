@@ -1,0 +1,490 @@
+﻿
+@using AhmetProj.Models
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Anasayfa</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.png">
+    <!-- Favicon -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/font-awesome.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/flaticon/flaticon.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/slick-theme.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/sal.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/magnific-popup.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/base.css">
+    <link rel="stylesheet" href="~/assets/css/style.min.css">
+    <!-- Bootstrap CSS -->
+</head>
+<body class="sticky-header newsletter-popup-modal">
+    <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
+    <header class="header axil-header header-style-1">
+
+        <div class="axil-header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="header-top-dropdown">
+                            <div class="dropdown">
+                                <button aria-expanded="false">
+                                    Türkçe
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="header-top-link">
+                            <ul class="quick-link">
+
+                                <li><a href="@Url.Action("sign_up", "UserLogin")">Kayıt Ol</a></li>
+                                <li><a href="@Url.Action("sign_in", "UserLogin")">Giriş Yap</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start Mainmenu Area  -->
+        <div id="axil-sticky-placeholder"></div>
+        <div class="axil-mainmenu">
+            <div class="container">
+                <div class="header-navbar">
+                    <div class="header-brand">
+                        <a href="index-1.html" class="logo logo-dark">
+                            <img src="~/assets/images/logo/logo.png" alt="Site Logo">
+                        </a>
+                        <a href="index-1.html" class="logo logo-light">
+                            <img src="~/assets/images/logo/logo-light.png" alt="Site Logo">
+                        </a>
+                    </div>
+                    <div class="header-main-nav">
+                        <!-- Start Mainmanu Nav -->
+                        <nav class="mainmenu-nav">
+                            <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
+                            <div class="mobile-nav-brand">
+                                <a href="index-1.html" class="logo">
+                                    <img src="~/assets/images/logo/logo.png" alt="Site Logo">
+                                </a>
+                            </div>
+                            <ul class="mainmenu">
+                                <li><a href="@Url.Action("Index", "Home")">Anasayfa</a></li>
+                                <li>
+                                    <a href="@Url.Action("product_list", "Products")">ALIŞVERİŞE BAŞLA</a>
+
+                                </li>
+
+                                <li><a href="@Url.Action("Index", "AboutUs")">Hakkımızda</a></li>
+                                <li><a href="@Url.Action("Index", "Contact")">İletişim</a></li>
+                            </ul>
+                        </nav>
+                        <!-- End Mainmanu Nav -->
+                    </div>
+                    <div class="header-action">
+                        <ul class="action-list">
+
+                            <li class="wishlist">
+                                <a href="wishlist.html">
+                                    <i class="flaticon-heart"></i>
+                                </a>
+                            </li>
+                            <li class="shopping-cart">
+                                <a href="@Url.Action("my_cart","Cart")" class="cart-dropdown-btn">
+                                    <span class="cart-count">3</span>
+                                    <i class="flaticon-shopping-cart"></i>
+                                </a>
+                            </li>
+                            <li class="my-account">
+                                <a href="javascript:void(0)">
+                                    <i class="flaticon-person"></i>
+                                </a>
+                                <div class="my-account-dropdown">
+                                    <span>
+                                    </span>
+                                    @if (Session["role"] != null)
+                                    {
+                                        var role = Session["role"].ToString();
+                                        <span class="title">Ayarlar</span>
+
+                                        <ul>
+
+
+                                            @if (role == "admin")
+                                            {
+                                                <li>
+
+                                                    <a href="@Url.Action("Index", "Admin")">Admin Paneli</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="@Url.Action("Logout", "UserLogin")">Çıkış</a>
+                                                </li>
+
+                                            }
+
+
+                                            else if (role == "user")
+                                            {
+                                       
+                                                <li>
+                                            @*User ın gelen id sinden hangi hesap bilgilerini getiricek onu tutuyoruz*@
+                                           <a href="@Url.Action("myaccount", "Users", new { id=((Users)Session["user_id"]).user_id})">Hesabım</a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="@Url.Action("Logout", "UserLogin")">Çıkış</a>
+                                                </li>
+
+                                            }
+
+
+
+
+
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <div class="login-btn">
+                                            <a href="@Url.Action("sign_in", "UserLogin")" class="axil-btn btn-bg-primary">Giriş Yap</a>
+                                        </div>
+                                        <div class="reg-footer text-center">Hesabınız Yok mu? <a href="@Url.Action("sign_up", "UserLogin")" class="btn-link">Kayıt Ol</a></div>
+                                    }
+                                </div>
+                            </li>
+                            <li class="axil-mobile-toggle">
+
+                                <button class="menu-btn mobile-nav-toggler">
+                                    <i class="flaticon-menu-2"></i>
+                                </button>
+
+
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Mainmenu Area -->
+    </header>
+
+    <main class="main-wrapper">
+        @RenderBody()
+    </main>
+
+    <div class="service-area">
+        <div class="container">
+            <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
+                <div class="col">
+                    <div class="service-box service-style-2">
+                        <div class="icon">
+                            <img src="~/assets/images/icons/service1.png" alt="Service">
+                        </div>
+                        <div class="content">
+                            <h6 class="title">Hızlı &amp; Güvenli Teslimat</h6>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-box service-style-2">
+                        <div class="icon">
+                            <img src="~/assets/images/icons/service2.png" alt="Service">
+                        </div>
+                        <div class="content">
+                            <h6 class="title">Para İade Garantisi</h6>
+                            <p>10 Gün İçinde.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-box service-style-2">
+                        <div class="icon">
+                            <img src="~/assets/images/icons/service3.png" alt="Service">
+                        </div>
+                        <div class="content">
+                            <h6 class="title">24 Saat İade Politikası</h6>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-box service-style-2">
+                        <div class="icon">
+                            <img src="~/assets/images/icons/service4.png" alt="Service">
+                        </div>
+                        <div class="content">
+                            <h6 class="title">Profesyonel Canlı Destek</h6>
+                            <p>7/24 Canlı Destek</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Footer Area  -->
+    <footer class="axil-footer-area footer-style-2">
+        <!-- Start Footer Top Area  -->
+        <div class="footer-top separator-top">
+            <div class="container">
+                <div class="row">
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Support</h5>
+                            <!-- <div class="logo mb--30">
+                                <a href="index.html">
+                                    <img class="light-logo" src="assets/images/logo/logo.png" alt="Logo Images">
+                                </a>
+                            </div> -->
+                            <div class="inner">
+                                <p>
+                                    acık adres <br>
+                                    Bursa, Yıldırım 16330, <br>
+                                    Turkiye
+                                </p>
+                                <ul class="support-list-item">
+                                    <li><a href="mailto:ahmetfrktorun@gmail.com"><i class="fal fa-envelope-open"></i> ahmetfrktorun@gmail.com</a></li>
+                                    <li><a href="tel:(+01)850-315-5862"><i class="fal fa-phone-alt"></i> (+90) 536-020-3341</a></li>
+                                    <!-- <li><i class="fal fa-map-marker-alt"></i> 685 Market Street,  <br> Las Vegas, LA 95820, <br> United States.</li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+
+                            <h5 class="widget-title">Hesap</h5>
+                            <div class="inner">
+                                @if (Session["role"] != null)
+                                {
+                                    var role = Session["role"].ToString();
+
+                                    if (role == "admin")
+                                    {
+                                        <ul>
+                                            <li><a href="@Url.Action("Index", "Admin")">Admin Paneli</a></li>
+                                        </ul>
+                                    }
+                                    else if (true)
+                                    {
+                                        <ul>
+                                            <li><a href="@Url.Action("account_detail", "Users")">Hesap Detay</a></li>
+                                            <li><a href="@Url.Action("sign_in", "UserLogin")">Giriş Yap</a></li>
+                                            <li><a href="wishlist.html">Favoriler</a></li>
+
+                                        </ul>
+                                    }
+                                }
+                                else
+                                {
+                                    <ul>
+                                        <li><a href="@Url.Action("sign_up", "UserLogin")">Kayıt Ol</a></li>
+                                        <li><a href="@Url.Action("sign_in", "UserLogin")">Giriş Yap</a></li>
+                                    </ul>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Hızlı Erişim</h5>
+                            <div class="inner">
+                                <ul>
+                                    <li><a href="contact.html">İletişim</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Uygulamamıza GozAtın</h5>
+                            <div class="inner">
+
+                                <div class="download-btn-group">
+                                    <div class="qr-code">
+                                        <img src="~/assets/images/others/qr.png" alt="Axilthemes">
+                                    </div>
+                                    <div class="app-link">
+                                        <a href="#">
+                                            <img src="~/assets/images/others/app-store.png" alt="App Store">
+                                        </a>
+                                        <a href="#">
+                                            <img src="~/assets/images/others/play-store.png" alt="Play Store">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Top Area  -->
+        <!-- Start Copyright Area  -->
+        <div class="copyright-area copyright-default separator-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-4">
+                        @{Html.RenderAction("sosyalmedya", "Home"); }
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="copyright-left d-flex flex-wrap justify-content-center">
+                            <ul class="quick-link">
+                                <li>© 2023. Tüm hakları saklıdır. <a target="_blank">Ahmet Torun</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
+                            <span class="card-text">Odeme Yontemleri</span>
+                            <ul class="payment-icons-bottom quick-link">
+                                <li><img src="~/assets/images/icons/cart/cart-1.png" alt="paypal cart"></li>
+                                <li><img src="~/assets/images/icons/cart/cart-2.png" alt="paypal cart"></li>
+                                <li><img src="~/assets/images/icons/cart/cart-5.png" alt="paypal cart"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Copyright Area  -->
+    </footer>
+    <!-- End Footer Area  -->
+
+
+
+
+
+    <div class="cart-dropdown" id="cart-dropdown">
+        <div class="cart-content-wrap">
+            <div class="cart-header">
+                <h2 class="header-title">Cart review</h2>
+                <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-body">
+                <ul class="cart-item-list">
+                    <li class="cart-item">
+                        <div class="item-img">
+                            <a href="single-product.html"><img src="assets/images/product/electric/product-01.png" alt="Commodo Blown Lamp"></a>
+                            <button class="close-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="item-content">
+                            <div class="product-rating">
+                                <span class="icon">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="rating-number">(64)</span>
+                            </div>
+                            <h3 class="item-title"><a href="single-product-3.html">Wireless PS Handler</a></h3>
+                            <div class="item-price"><span class="currency-symbol">$</span>155.00</div>
+                            <div class="pro-qty item-quantity">
+                                <input type="number" class="quantity-input" value="15">
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="cart-footer">
+                <h3 class="cart-subtotal">
+                    <span class="subtotal-title">Subtotal:</span>
+                    <span class="subtotal-amount">$610.00</span>
+                </h3>
+                <div class="group-btn">
+                    <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">Sepeti Goruntule</a>
+                    <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Siparis tamamla</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offer Modal Start -->
+    <div class="offer-popup-modal" id="offer-popup-modal">
+        <div class="offer-popup-wrap">
+            <div class="card-body">
+                <button class="popup-close"><i class="fas fa-times"></i></button>
+                <div class="content">
+                    <div class="section-title-wrapper">
+                        <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i> Don’t Miss!!</span>
+                        <h3 class="title">Best Sales Offer<br> Grab Yours</h3>
+                    </div>
+                    <div class="poster-countdown countdown"></div>
+                    <a href="shop.html" class="axil-btn btn-bg-primary">Shop Now <i class="fal fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="closeMask"></div>
+    <!-- Offer Modal End -->
+    <!-- JS
+    ============================================ -->
+    <!-- Modernizer JS -->
+    <script src="~/assets/js/vendor/modernizr.min.js"></script>
+    <!-- jQuery JS -->
+    <script src="~/assets/js/vendor/jquery.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/assets/js/vendor/popper.min.js"></script>
+    <script src="~/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="~/assets/js/vendor/slick.min.js"></script>
+    <script src="~/assets/js/vendor/js.cookie.js"></script>
+    <!-- <script src="assets/js/vendor/jquery.style.switcher.js"></script> -->
+    <script src="~/assets/js/vendor/jquery-ui.min.js"></script>
+    <script src="~/assets/js/vendor/jquery.countdown.min.js"></script>
+    <script src="~/assets/js/vendor/sal.js"></script>
+    <script src="~/assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/js/vendor/isotope.pkgd.min.js"></script>
+    <script src="~/assets/js/vendor/counterup.js"></script>
+    <script src="~/assets/js/vendor/waypoints.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/assets/js/main.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+<script>
+    $(document).on('click', '.number-spinner button', function () {
+        var btn = $(this),
+            oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+            newVal = 0;
+
+        if (btn.attr('data-dir') == 'up') {
+            newVal = parseInt(oldValue) + 1;
+        } else {
+            if (oldValue > 1) {
+                newVal = parseInt(oldValue) - 1;
+            } else {
+                newVal = 1;
+            }
+        }
+        btn.closest('.number-spinner').find('input').val(newVal);
+    });
+</script>
+</body>
+</html>

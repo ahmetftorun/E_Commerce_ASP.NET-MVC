@@ -1,0 +1,55 @@
+﻿@model IEnumerable<AhmetProj.Models.Categorys>
+@{
+    ViewBag.Title = "kategori_listele";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Kategori Listele</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index","Admin")"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">AnaSayfa</li>
+                    <li class="breadcrumb-item active">Kategori Listele</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid list-products">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar product-table">
+                        <table class="display" id="basic-1">
+                            <thead>
+                                <tr>
+                                    <th>Marka Adı</th>
+                                    <th>Ayarla</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="font-success">@Html.DisplayFor(modelItem => item.category_name)</td>
+
+                                        <td>
+                                            <a href="@Url.Action("kategori_sil", "Admin", new {id=item.category_id})" class="btn btn-danger btn-xs" role="button" data-original-title="Sil" title="Sil">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

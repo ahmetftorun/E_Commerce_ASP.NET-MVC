@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="E_Commercemain_vtModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Brands">
+    <Key>
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="brand_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="brand_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Brands" FromRole="Brands" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Categorys">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categorys" FromRole="Categorys" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="order_regnum" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="piece" Type="Int32" Nullable="false" />
+    <Property Name="order_date" Type="DateTime" Precision="0" />
+    <Property Name="order_no" Type="Int32" />
+    <Property Name="order_regnum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Orders_Products" FromRole="Orders" ToRole="Products" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="brand_id" Type="Int32" />
+    <Property Name="product_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="product_price" Type="Double" />
+    <Property Name="product_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="product_img1" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Brands" Relationship="Self.FK_Products_Brands" FromRole="Products" ToRole="Brands" />
+    <NavigationProperty Name="Categorys" Relationship="Self.FK_Products_Categorys" FromRole="Products" ToRole="Categorys" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+    <Property Name="product_img2" Type="String" FixedLength="false" MaxLength="80" Unicode="true" />
+    <Property Name="product_img3" Type="String" FixedLength="false" MaxLength="80" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Productsimg">
+    <Key>
+      <PropertyRef Name="pimg_id" />
+    </Key>
+    <Property Name="pimg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="product_img1" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="product_img2" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Productsimg_Products" FromRole="Productsimg" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Sliders">
+    <Key>
+      <PropertyRef Name="slider_id" />
+    </Key>
+    <Property Name="slider_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="slider_img" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="slider_price" Type="Double" />
+    <Property Name="slider_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="slider_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SocialMedia">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="facebook_url" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="instagram_url" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="twitter_url" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="linkedin_url" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="discord_url" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_password" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="user_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_surname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_phonenumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="user_email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_membershipdate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="UsersAdress" Relationship="Self.FK_UsersAdress_Users" FromRole="Users" ToRole="UsersAdress" />
+  </EntityType>
+  <EntityType Name="UsersAdress">
+    <Key>
+      <PropertyRef Name="useradress_id" />
+    </Key>
+    <Property Name="useradress_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="useradress_province" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="useradress_town" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="useradress_explicitadress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_UsersAdress_Users" FromRole="UsersAdress" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Products_Brands">
+    <End Role="Brands" Type="Self.Brands" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="brand_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categorys">
+    <End Role="Categorys" Type="Self.Categorys" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorys">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productsimg_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Productsimg" Type="Self.Productsimg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Productsimg">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAdress_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UsersAdress" Type="Self.UsersAdress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="UsersAdress">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="E_Commercemain_vtEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Brands" EntityType="Self.Brands" />
+    <EntitySet Name="Categorys" EntityType="Self.Categorys" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="Productsimg" EntityType="Self.Productsimg" />
+    <EntitySet Name="Sliders" EntityType="Self.Sliders" />
+    <EntitySet Name="SocialMedia" EntityType="Self.SocialMedia" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="UsersAdress" EntityType="Self.UsersAdress" />
+    <AssociationSet Name="FK_Products_Brands" Association="Self.FK_Products_Brands">
+      <End Role="Brands" EntitySet="Brands" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categorys" Association="Self.FK_Products_Categorys">
+      <End Role="Categorys" EntitySet="Categorys" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Products" Association="Self.FK_Orders_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productsimg_Products" Association="Self.FK_Productsimg_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Productsimg" EntitySet="Productsimg" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAdress_Users" Association="Self.FK_UsersAdress_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersAdress" EntitySet="UsersAdress" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

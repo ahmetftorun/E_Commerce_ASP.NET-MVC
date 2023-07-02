@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="E_Commercemain_vtModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Brands">
+    <Key>
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="brand_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="brand_name" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Categorys">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="order_regnum" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="piece" Type="int" Nullable="false" />
+    <Property Name="order_date" Type="date" />
+    <Property Name="order_no" Type="int" />
+    <Property Name="order_regnum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="brand_id" Type="int" />
+    <Property Name="product_name" Type="nvarchar" MaxLength="30" />
+    <Property Name="product_price" Type="float" />
+    <Property Name="product_description" Type="nvarchar(max)" />
+    <Property Name="product_img1" Type="nvarchar" MaxLength="80" />
+    <Property Name="product_img2" Type="nvarchar" MaxLength="80" />
+    <Property Name="product_img3" Type="nvarchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="roles_id" />
+    </Key>
+    <Property Name="roles_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roles_name" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Sliders">
+    <Key>
+      <PropertyRef Name="slider_id" />
+    </Key>
+    <Property Name="slider_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="slider_img" Type="nvarchar" MaxLength="80" />
+    <Property Name="slider_price" Type="float" />
+    <Property Name="slider_title" Type="nvarchar" MaxLength="50" />
+    <Property Name="slider_description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SocialMedia">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="facebook_url" Type="nvarchar" MaxLength="80" />
+    <Property Name="instagram_url" Type="nvarchar" MaxLength="80" />
+    <Property Name="twitter_url" Type="nvarchar" MaxLength="80" />
+    <Property Name="linkedin_url" Type="nvarchar" MaxLength="80" />
+    <Property Name="discord_url" Type="nvarchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_username" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="user_password" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_surname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_phonenumber" Type="char" MaxLength="10" />
+    <Property Name="user_email" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="user_membershipdate" Type="date" />
+    <Property Name="roles_id" Type="int" />
+  </EntityType>
+  <EntityType Name="UsersAdress">
+    <Key>
+      <PropertyRef Name="useradress_id" />
+    </Key>
+    <Property Name="useradress_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="useradress_province" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="useradress_town" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="useradress_explicitadress" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Orders_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Brands">
+    <End Role="Brands" Type="Self.Brands" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="brand_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categorys1">
+    <End Role="Categorys" Type="Self.Categorys" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorys">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="roles_id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="roles_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAdress_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UsersAdress" Type="Self.UsersAdress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="UsersAdress">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="E_Commercemain_vtModelStoreContainer">
+    <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SocialMedia" EntityType="Self.SocialMedia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersAdress" EntityType="Self.UsersAdress" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Orders_Products" Association="Self.FK_Orders_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Brands" Association="Self.FK_Products_Brands">
+      <End Role="Brands" EntitySet="Brands" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categorys1" Association="Self.FK_Products_Categorys1">
+      <End Role="Categorys" EntitySet="Categorys" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAdress_Users" Association="Self.FK_UsersAdress_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersAdress" EntitySet="UsersAdress" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

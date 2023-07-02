@@ -1,0 +1,72 @@
+﻿@model IEnumerable<AhmetProj.Models.UsersAdress>
+    @using AhmetProj.Models
+@{
+    ViewBag.Title = "list_adress";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="axil-dashboard-area axil-section-gap">
+    <div class="container">
+        <div class="axil-dashboard-warp">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="dashboard-menu">
+                        <ul class="nav flex-column" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="@Url.Action("myaccount","Users",new { id=((Users)Session["user_id"] ).user_id})" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Hesabım</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="@Url.Action("user_adress","Users")" aria-selected="false"><i class="fi-rs-credit-card mr-10"></i>Adres Bilgileri</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="tab-pane fade active show">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="mb-0">Adres Listesi</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>İl</th>
+                                                <th>İlçe</th>
+                                                <th>Açık Adres</th>
+                                                <th>Düzenle/Sil</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>@item.useradress_town</td>
+                                                    <td>@item.useradress_province</td>
+                                                    <td>@item.useradress_explicitadress</td>
+                                                   
+                                                    <td>
+                                                        <a href="@Url.Action("update_adress", "Users", new { id = item.useradress_id })" class="btn-small d-block">Düzenle</a>
+                                                        <a href="@Url.Action("delete_adress", "Users", new { id = item.useradress_id })" class="btn-small d-block">Sil</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

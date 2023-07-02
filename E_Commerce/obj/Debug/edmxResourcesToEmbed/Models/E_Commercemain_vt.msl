@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="E_Commercemain_vtModelStoreContainer" CdmEntityContainer="E_Commercemain_vtEntities">
+    <EntitySetMapping Name="Brands">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.Brands">
+        <MappingFragment StoreEntitySet="Brands">
+          <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+          <ScalarProperty Name="brand_name" ColumnName="brand_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorys">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.Categorys">
+        <MappingFragment StoreEntitySet="Categorys">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="piece" ColumnName="piece" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="order_regnum" ColumnName="order_regnum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_price" ColumnName="product_price" />
+          <ScalarProperty Name="product_description" ColumnName="product_description" />
+          <ScalarProperty Name="product_img1" ColumnName="product_mainimg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productsimg">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.Productsimg">
+        <MappingFragment StoreEntitySet="Productsimg">
+          <ScalarProperty Name="pimg_id" ColumnName="pimg_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_img1" ColumnName="product_img1" />
+          <ScalarProperty Name="product_img2" ColumnName="product_img2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sliders">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.Sliders">
+        <MappingFragment StoreEntitySet="Sliders">
+          <ScalarProperty Name="slider_id" ColumnName="slider_id" />
+          <ScalarProperty Name="slider_img" ColumnName="slider_img" />
+          <ScalarProperty Name="slider_price" ColumnName="slider_price" />
+          <ScalarProperty Name="slider_title" ColumnName="slider_title" />
+          <ScalarProperty Name="slider_description" ColumnName="slider_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SocialMedia">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.SocialMedia">
+        <MappingFragment StoreEntitySet="SocialMedia">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="facebook_url" ColumnName="facebook_url" />
+          <ScalarProperty Name="instagram_url" ColumnName="instagram_url" />
+          <ScalarProperty Name="twitter_url" ColumnName="twitter_url" />
+          <ScalarProperty Name="linkedin_url" ColumnName="linkedin_url" />
+          <ScalarProperty Name="discord_url" ColumnName="discord_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_username" ColumnName="user_username" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_surname" ColumnName="user_surname" />
+          <ScalarProperty Name="user_phonenumber" ColumnName="user_phonenumber" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_membershipdate" ColumnName="user_membershipdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersAdress">
+      <EntityTypeMapping TypeName="E_Commercemain_vtModel.UsersAdress">
+        <MappingFragment StoreEntitySet="UsersAdress">
+          <ScalarProperty Name="useradress_id" ColumnName="useradress_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="useradress_province" ColumnName="useradress_province" />
+          <ScalarProperty Name="useradress_town" ColumnName="useradress_town" />
+          <ScalarProperty Name="useradress_explicitadress" ColumnName="useradress_explicitadress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

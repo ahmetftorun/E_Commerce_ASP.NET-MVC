@@ -1,0 +1,78 @@
+﻿@model IEnumerable<AhmetProj.Models.Products>
+@{
+    ViewBag.Title = "urun_listele";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Urun Listele</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index","Admin")"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">AnaSayfa</li>
+                    <li class="breadcrumb-item active">Urun listesi</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid list-products">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar product-table">
+                        <table class="display" id="basic-1">
+                            <thead>
+                                <tr>
+                                    <th>Ana Resim</th>
+                                    <th>Yan Resim</th>
+                                    <th>Yan Resim</th>
+                                    <th>Urun Ad</th>
+                                    <th>Acıklama</th>
+                                    <th>Marka</th>
+                                    <th>Fiyat</th>
+                                    <th>Ayarla</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <td><img src=@item.product_img1 alt=""></td>
+                                        <td><img src=@item.product_img2 alt=""></td>
+                                        <td><img src=@item.product_img3 alt=""></td>
+                                        <td>
+
+                                            <h6>@item.product_name</h6>
+                                           
+                                        </td>
+                                        <td> <span>@item.product_description</span></td>
+                                        <td class="font-success">@item.Brands.brand_name</td>
+                                        <td>@item.product_price</td>
+
+
+                                        <td>
+
+                                            <a href="@Url.Action("urun_sil", "Admin", new {id=item.product_id})" class="btn btn-danger btn-xs" role="button" data-original-title="Sil" title="Sil">Sil</a>
+                                            <a href="@Url.Action("urun_guncelle", "Admin", new { id = item.product_id })" class="btn btn-primary btn-xs" role="button" data-original-title="Güncelle" title="Güncelle">Güncelle</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

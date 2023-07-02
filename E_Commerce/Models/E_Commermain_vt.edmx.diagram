@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2627d42863da4b9d8379d571e8856044" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.Brands" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.Categorys" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.Orders" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.Products" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.Sliders" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.SocialMedia" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.Users" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.UsersAdress" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="E_Commercemain_vtModel.FK_Products_Brands" ManuallyRouted="false" />
+        <AssociationConnector Association="E_Commercemain_vtModel.FK_Products_Categorys1" ManuallyRouted="false" />
+        <AssociationConnector Association="E_Commercemain_vtModel.FK_Orders_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="E_Commercemain_vtModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="E_Commercemain_vtModel.FK_UsersAdress_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="E_Commercemain_vtModel.Roles" Width="1.5" PointX="0.75" PointY="9" />
+        <AssociationConnector Association="E_Commercemain_vtModel.FK_Users_Roles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

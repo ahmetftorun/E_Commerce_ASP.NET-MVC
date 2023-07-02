@@ -1,0 +1,107 @@
+﻿@model IEnumerable <AhmetProj.Models.UsersAdress>
+    @using AhmetProj.Models
+@{
+    ViewBag.Title = "Ödeme Yap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container mb-80 mt-50">
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="row">
+                
+                <b>@ViewBag.siparis_msj</b>
+
+                <div class="tab-pane fade active show">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0">Adres Bilgilerim</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Mahalle</th>
+                                            <th>Cadde</th>
+                                            <th>Sokak</th>
+                                            <th>Apartman No</th>
+                                            <th>Düzenle/Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var address in ViewBag.Addresses)
+                                        {
+                                            <tr>
+                                                <td>@address.useradress_town</td>
+                                                <td>@address.useradress_province</td>
+                                                <td>@address.useradress_explicitadress</td>
+
+                                                <td>
+                                                    <a href="@Url.Action("update_adress", "Users", new { id = address.useradress_id })" class="btn-small d-block">Düzenle</a>
+                                                    <a href="@Url.Action("delete_adress", "Adres", new { id = address.useradress_id })" class="btn-small d-block">Sil</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="border p-40 cart-totals ml-30 mb-50">
+                <div class="d-flex align-items-end justify-content-between mb-30">
+                    <h4>Ödeme Şekli</h4>
+
+                </div>
+                <div class="divider-2 mb-30"></div>
+                <div class="table-responsive order_table checkout">
+                    <table class="table no-border">
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="payment ml-30">
+
+                                        <div class="payment_option">
+                                            <div class="custome-radio">
+                                                <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios3" checked="">
+                                                <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Havale</label>
+                                            </div>
+                                            <div class="custome-radio">
+                                                <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios4" checked="">
+                                                <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Kapıda Ödeme</label>
+                                            </div>
+                                            <div class="custome-radio">
+                                                <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios5" checked="">
+                                                <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Kredi Kartı</label>
+                                            </div>
+                                        </div>
+                                        <div class="payment-logo d-flex">
+                                            <img class="mr-15" src="assets/imgs/theme/icons/payment-paypal.svg" alt="">
+                                            <img class="mr-15" src="assets/imgs/theme/icons/payment-visa.svg" alt="">
+                                            <img class="mr-15" src="assets/imgs/theme/icons/payment-master.svg" alt="">
+                                            <img src="assets/imgs/theme/icons/payment-zapper.svg" alt="">
+                                        </div>
+                                        <a href="@Url.Action("Orders","Orders")" class="axil-btn btn-bg-primary checkout-btn">Odemeyi Tamamla</a>
+                                      
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
